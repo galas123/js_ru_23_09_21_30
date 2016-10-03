@@ -1,7 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes}  from 'react'
 import CommentList from './CommentList'
 
 export default class Article extends Component {
+    static propTypes = {
+        article: PropTypes.shape({
+            id      : PropTypes.string.isRequired,
+            date    : PropTypes.string.isRequired,
+            title   : PropTypes.string,
+            text    : PropTypes.string,
+            comments: PropTypes.array
+        }).isRequired
+    }
+
     static defaultProps = {
 
     }
@@ -49,6 +59,7 @@ export default class Article extends Component {
             isOpen: !this.state.isOpen
         })
     }
+
 }
 
 /*

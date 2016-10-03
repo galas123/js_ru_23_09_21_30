@@ -4,6 +4,7 @@ import toggleOpen from './decorators/toggleOpen'
 
 function CommentList(props) {
     const { comments, isOpen, toggleOpen } = props
+  
     if (!comments || !comments.length) return <p>No comments yet</p>
 
     const commentItems = comments.map(comment => <li key={comment.id}><Comment comment={comment}/></li>)
@@ -17,5 +18,16 @@ function CommentList(props) {
         </div>
     )
 }
+
+CommentList.propTypes = {
+  comments  : PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    user: PropTypes.string
+  })
+  ),
+  isOpen    : PropTypes.bool.isRequired,
+  toggleOpen: PropTypes.func.isRequired
+}
+
 
 export default toggleOpen(CommentList)
